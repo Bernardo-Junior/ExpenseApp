@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-main() {
-  runApp(ExpenseApp());
-}
+main() => runApp(ExpenseApp());
 
 class ExpenseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+    );
   }
 }
 
