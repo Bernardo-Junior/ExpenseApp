@@ -50,17 +50,40 @@ class _TransactionFormState extends State<TransactionForm> {
               ),
               onSubmitted: (_) => _formatDatesAndSubmit(),
             ),
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  const Text('Nenhuma data selecionada!'),
+                  TextButton(
+                    child: const Text(
+                      'Selecionar Data',
+                      style: TextStyle(color: Colors.purple),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FlatButton(
-                  child: const Text(
+                ElevatedButton(
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(5),
+                  ),
+                  child: Text(
                     'Nova Transação',
                     style: TextStyle(
-                      color: Colors.purple,
+                      color: Theme.of(context).textTheme.button!.color,
+                      fontFamily: 'OpenSans',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   onPressed: _formatDatesAndSubmit,
+                  onLongPress: () {
+                    print("OI");
+                  },
                 ),
               ],
             )

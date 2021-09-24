@@ -23,6 +23,10 @@ class ExpenseApp extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
               ),
+              button: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
@@ -115,8 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.removeWhere((tr) => tr.id == resultList[0].id);
     });
-
-    print(_transactions);
   }
 
   _openTransactionFormModal(BuildContext context) {
