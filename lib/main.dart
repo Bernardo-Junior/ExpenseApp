@@ -108,6 +108,17 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
+  _removeTransaction(String id) {
+    var resultList =
+        _transactions.where((tr) => tr.id.toString() == id).toList();
+
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == resultList[0].id);
+    });
+
+    print(_transactions);
+  }
+
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -138,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),
