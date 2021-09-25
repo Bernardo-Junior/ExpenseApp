@@ -14,63 +14,76 @@ class CharBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 20,
-          child: FittedBox(
-            child: Text(
-              value!.toStringAsFixed(2),
-              style: TextStyle(fontSize: 3),
+    return LayoutBuilder(
+      builder: (ctx, constraints) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
             ),
-          ),
-        ),
-        Container(
-          height: 80,
-          width: 10,
-          margin: const EdgeInsets.all(10),
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
-                  ),
-                  color: const Color.fromRGBO(220, 220, 220, 1),
-                  borderRadius: BorderRadius.circular(5),
+            Container(
+              height: constraints.maxHeight * 0.10,
+              child: FittedBox(
+                child: Text(
+                  value!.toStringAsFixed(2),
                 ),
               ),
-              FractionallySizedBox(
-                heightFactor: percentage,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(5),
+            ),
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
+            ),
+            Container(
+              height: constraints.maxHeight * 0.6,
+              width: constraints.maxWidth * 0.2,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      color: const Color.fromRGBO(220, 220, 220, 1),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
                   ),
+                  FractionallySizedBox(
+                    heightFactor: percentage,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
+            ),
+            Container(
+              height: constraints.maxHeight * 0.10,
+              child: FittedBox(
+                child: Text(
+                  label!.toUpperCase(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontFamily: 'OpenSans',
+                  ),
+                  textAlign: TextAlign.end,
                 ),
               ),
-            ],
-          ),
-        ),
-        Text(
-          label!.toUpperCase(),
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: 'OpenSans',
-          ),
-          textAlign: TextAlign.end,
-        ),
-        const SizedBox(
-          height: 10,
-        )
-      ],
+            ),
+            SizedBox(
+              height: constraints.maxHeight * 0.05,
+            )
+          ],
+        );
+      },
     );
   }
 }
